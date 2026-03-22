@@ -1,0 +1,20 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm run install
+
+COPY . .
+
+RUN npm run build
+
+
+# Serve Using Nginx
+
+FROM nginx:alpine
+
+COPY --from=0 /app/dist/ /usr/share/nginx/html
+
+CMD ["nginx", "-g"]
