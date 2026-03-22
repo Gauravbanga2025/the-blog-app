@@ -28,7 +28,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN}}
 
 
-# Frontend Image:
+# Frontend Image :
       - name: Build & Push Frontend Code
         uses: docker/build-push-actions@v6
         with:
