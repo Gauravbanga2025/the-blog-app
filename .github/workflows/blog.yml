@@ -27,14 +27,31 @@ jobs:
           username: ${{ vars.DOCKERHUB_USER}}
           password: ${{ secrets.DOCKERHUB_TOKEN}}
 
+# Backend Image:
+
+      - name: Build & Push Backend Code
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          push: true
+          tags: | 
+            gauravbanga/blog-backend:latest
+            gauravbanga/blog-backend:${{ github.sha }}
+
 
 # Frontend Image:
       - name: Build & Push Frontend Code
         uses: docker/build-push-action@v6
         with:
-          context: ./client
-          file: ./client/Dockerfile
+          context: ./frontend
+          file: ./frontend/Dockerfile
           push: true
           tags: |
             gauravbanga/blog-frontend:latest
             gauravbanga/blog-frontend:${{ github.sha }}
+
+
+
+      - name: Debug Structure
+        run: ls -R
