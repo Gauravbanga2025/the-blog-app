@@ -55,6 +55,28 @@ jobs:
             gauravbanga/blog-frontend:${{ github.sha }}
 
 
+# CD Step 
+     
+      - name: Deploy To Production server
+        uses: appleboy/ssh-action@v1.0.0
+        with: 
+          host: ${{ secrets.PROD_IP }}
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          script: | 
+            docker pull gauravbanga/blog-backend:latest
+            docker pull gauravbanga/blog-frontend:latest
+
+            docker stop blog-backend || true
+            docker rm blog-backend || true
+            
+            docker stop blog-frontend || true
+            docker rm blog-frontend || true
+            
+            docker run -d -p 5000:5000 --name blog-backend gauravbanga/blog-backend:latest
+            docker run -d -p 3000:3000 --name blog-frontend gauravbanga/blog-frontend:latest
+
+
 
       - name: Debug Structure
         run: ls -R
