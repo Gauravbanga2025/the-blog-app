@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
 
     steps:
@@ -74,9 +74,9 @@ jobs:
             docker rm blog-frontend || true
             
             docker run -d -p 5000:5000 --name blog-backend gauravbanga/blog-backend:latest
-            docker run -d -p 3000:3000 --name blog-frontend gauravbanga/blog-frontend:latest
+            docker run -d -p 3000:80 --name blog-frontend gauravbanga/blog-frontend:latest
 
 
 
       - name: Debug Structure
-        run: ls -R
+        run: ls -R 
