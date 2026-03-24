@@ -55,7 +55,7 @@ jobs:
             gauravbanga/blog-frontend:${{ github.sha }}
 
 
-# CD Step: 
+# CD Step:
      
       - name: Deploy To Production server
         uses: appleboy/ssh-action@v1.0.0
