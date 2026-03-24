@@ -62,7 +62,7 @@ jobs:
         with: 
           host: ${{ secrets.PROD_IP }}
           username: ubuntu
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.oracle_devops }}
           script: | 
             docker pull gauravbanga/blog-backend:latest
             docker pull gauravbanga/blog-frontend:latest
