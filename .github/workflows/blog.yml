@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
 
     steps:
@@ -61,8 +61,8 @@ jobs:
         uses: appleboy/ssh-action@v1.0.0
         with: 
           host: ${{ secrets.PROD_IP }}
-          username: ubuntu
-          key: ${{ secrets.oracle_devops }}
+          username: devops
+          key: ${{ secrets.VPS_KEY }}
           script: | 
             docker pull gauravbanga/blog-backend:latest
             docker pull gauravbanga/blog-frontend:latest
